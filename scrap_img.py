@@ -2,6 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 import urllib
 import string
+from os import path
 
 
 def read_sub_page(url_m, path_folder_img):
@@ -31,6 +32,7 @@ def read_details(job_el,path_folder_img):
         url_murder = more[0].get('href')
         read_sub_page(url_murder, path_folder_img)
 
+
 def read_murder_browser(gender_selected,letter,country):
 
     url_root = 'https://criminalia.es/resultados-de-la-busqueda/'
@@ -47,26 +49,18 @@ def read_murder_browser(gender_selected,letter,country):
 def main():
     
     gender_selected = input('Gender (hombre o mujer): ')
-    if gender_selected not in ['hombre','mujer']:
+    while gender_selected not in ['hombre','mujer']:
         print('Please select valid gender')
         gender_selected = input('Gender (hombre o mujer): ')
+
     path_folder_img = input('Folder to store images: ')
+    while path.exists(path_folder_img) is False:
+        print('Select valid path')
+        path_folder_img = input('Folder to store images: ')  
     print('Images will be stored in: {}'.format(path_folder_img))
+
     letters_list = list(string.ascii_lowercase)
     for t in range(0, len(letters_list)):
-        '''
-        modalidad = input('Country or Letter (country o letter): ')
-        if modalidad == 'country':
-            country = input('selected country: ')
-            country = country.replace('ñ','n')
-            letter = None
-        elif modalidad == 'letter':
-            lett = input('selected letter: ')
-            country = None
-        else:
-            print('Please select a valid modality')
-            input('Country or Letter (country o letter): ')
-        '''
         url = read_murder_browser(gender_selected,letters_list[t], None)
         print('URL ',url)
         page = requests.get(url)
@@ -77,5 +71,6 @@ def main():
 
 if __name__ == "__main__":
     main()
-    print('Image Saving DONE')
+
+
 

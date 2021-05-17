@@ -9,17 +9,11 @@ def read_sub_page(url_m, path_folder_img):
 
     try:
         subpage = requests.get(url_m)
-
         subsoup = BeautifulSoup(subpage.content, 'html.parser')
-
         results_subpage = subsoup.find_all(id="container")
-
         job_elems = results_subpage[0].find('div', class_='image')
-
         img_elem = job_elems.findAll('img')
-
         url_img = img_elem[0]['data-src'] 
-
         urllib.request.urlretrieve(url_img, path_folder_img + url_img.split('/')[-1])
     except:
         print('NOT SAVED: ',url_m)
@@ -36,14 +30,11 @@ def read_details(job_el,path_folder_img):
 def read_murder_browser(gender_selected,letter,country):
 
     url_root = 'https://criminalia.es/resultados-de-la-busqueda/'
-
     if letter is None:
          query = '?g=' + gender_selected + '&c='+ country
     else:
          query = '?l='+letter+'&g=' + gender_selected
-
     url = url_root + query
-
     return(url)
 
 def main():
@@ -58,7 +49,7 @@ def main():
         print('Select valid path')
         path_folder_img = input('Folder to store images: ')  
     print('Images will be stored in: {}'.format(path_folder_img))
-
+    
     letters_list = list(string.ascii_lowercase)
     for t in range(0, len(letters_list)):
         url = read_murder_browser(gender_selected,letters_list[t], None)

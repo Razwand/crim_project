@@ -2,6 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 import pandas as pd
 import string
+import itertools
 
 
 def read_sub_page(url_m,classif,condena,loc,subclass,victims,date,deten,victimprof):
@@ -92,17 +93,19 @@ def main():
         date_l.append(date)
         deten_l.append(deten)
         victimprof_l.append(victimprof)
-    
-    df['Class'] = classif_l
-    df['Subclass'] = subclass_l
-    df['Condena'] = condena_l
-    df['Location'] = loc_l
-    df['Victims'] = victims_l
-    df['Date murder'] = date_l
-    df['Date Detention'] = deten_l
-    df['Victim Profile'] = victimprof_l
 
-    df.to_csv('man.csv')
+    df['Class'] = list(itertools.chain.from_iterable(classif_l))
+    df['Subclass'] = list(itertools.chain.from_iterable(subclass_l))
+    df['Condena'] = list(itertools.chain.from_iterable(condena_l))
+    df['Location'] = list(itertools.chain.from_iterable(loc_l))
+    df['Victims'] = list(itertools.chain.from_iterable(victims_l))
+    df['Date murder'] = list(itertools.chain.from_iterable(date_l))
+    df['Date Detention'] = list(itertools.chain.from_iterable(deten_l))
+    df['Victim Profile'] = list(itertools.chain.from_iterable(victimprof_l))
+
+    print(df)
+
+    df.to_csv('man.csv', index=False)
 
 if __name__ == "__main__":
     main()

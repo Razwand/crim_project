@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 """scrap_img.py: This script takes de web criminalia and scrapps images from all the listed profiles. 
-Images can be downloaded choosing between man/woman profiles andthe folder where they will be stored."""
+Images can be downloaded choosing between man/woman profiles andthe folder where they will be stored.Folders will be separated by gender (woman/man)"""
 
 __author__ = "Alicia Sánchez R."
 

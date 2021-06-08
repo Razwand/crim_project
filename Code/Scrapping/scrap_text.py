@@ -1,3 +1,20 @@
+#!/usr/bin/env python
+
+"""scrap_text.py: This script takes de web criminalia and scrapps data from all the listed profiles. 
+This data is returned as a .csv file with the following variables:
+
+Class: Murder, Serial Killer, Homicide, etc.
+Subclass: Parricide, etc.
+Sentence: Death penalty, years of prison, etc. To be processed.
+Location: State/Country
+Victims: Number of victims
+Date: Date of the crime
+Detention: Date of the detention
+Victim Profile: Male/Female, age and other details to be processed
+"""
+
+__author__ = "Alicia Sánchez R."
+
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
@@ -6,6 +23,12 @@ import itertools
 
 
 def read_sub_page(url_m,classif,condena,loc,subclass,victims,date,deten,victimprof):
+
+    '''
+    Extract from each profile the required data filtering by id container, class text and later class dd
+    Note: class dd is the same for all the string data. Knowing the structure and the data that is always inside this string (not all the data is allways shown)
+    some characters are deleted and the string becomes a list of variable values that will be stored in variables classif,condena,loc,subclass,victims,date,deten and victimprof
+    '''
 
     subpage = requests.get(url_m)
     subsoup = BeautifulSoup(subpage.content, 'html.parser')
@@ -35,6 +58,9 @@ def read_sub_page(url_m,classif,condena,loc,subclass,victims,date,deten,victimpr
     return(classif,condena,loc,subclass,victims,date,deten,victimprof)
  
 def read_details(job_el, df):
+    '''
+    Read variables from each profile in the gender-letter list of profiles that corresponds to the built url
+    '''
     classif = []
     condena = []
     loc = []
@@ -53,6 +79,10 @@ def read_details(job_el, df):
 
 def read_murder_browser(gender_selected,letter,country):
 
+    '''
+    Build url from parameters letter and gender
+    '''
+
     url_root = 'https://criminalia.es/resultados-de-la-busqueda/'
     if letter is None:
          query = '?g=' + gender_selected + '&c='+ country
@@ -62,6 +92,18 @@ def read_murder_browser(gender_selected,letter,country):
     return(url)
 
 def main():
+
+    '''
+    - Select Gender to scrapp profile data.
+    - Store each scrapped variable in a list that will serve later as a dataframe column
+    - For each letter the scrapping process goes:
+        - read_murder_browser in order to get group of profiles (gender and letter) url
+        - Read html
+        - Read content id and block class
+        - Read each single variable with read_details and store them in their list
+    - Build dataframe and store it as .csv file
+
+    '''
     
     gender_selected = input('Gender (hombre o mujer): ')
     while gender_selected not in ['hombre','mujer']:
@@ -103,9 +145,10 @@ def main():
     df['Date Detention'] = list(itertools.chain.from_iterable(deten_l))
     df['Victim Profile'] = list(itertools.chain.from_iterable(victimprof_l))
 
-    print(df)
+    #print(df)
 
     df.to_csv('man.csv', index=False)
+
 
 if __name__ == "__main__":
     main()

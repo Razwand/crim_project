@@ -17,11 +17,14 @@ Images can be downloaded choosing between man/woman profiles andthe folder where
 Scrapps data from all the listed profiles. 
 This data is returned as a .csv file with the following variables:
 
-|Class| Murder, Serial Killer, Homicide, etc.
-|Subclass| Parricide, etc.
-|Sentence| Death penalty, years of prison, etc. To be processed.
-|Location| State/Country
-|Victims| Number of victims
-|Date|Date of the crime
-|Detention| Date of the detention
-|Victim Profile| Male/Female, age and other details to be processed
+| Feature             | Values                                                                |
+| ----------------- | ------------------------------------------------------------------ |
+| Class | Murder, Serial Killer, Homicide, etc.|
+| Subclass | Parricide, etc. |
+| Sentence | Death penalty, years of prison, etc. To be processed. |
+| Location| State/Country |
+| Victims| Number of victims |
+|Date|Date of the crime|
+|Detention|Date of the detention|
+|Victim Profile| Male/Female, age and other details to be processed|
+

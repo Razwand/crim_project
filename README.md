@@ -17,6 +17,10 @@ Profile Images and Data can be downloaded choosing between man/woman profiles an
 Also, in order to perform a smaller search, there's an option to perform a search considering just a few random letters (corresponding to surname search).
 ### How to
 
+
+![]('https://github.com/Razwand/scrapping_data_criminalia/blob/main/images/result_1.PNG')
+
+
 ## 🖋 Scrapping Text
 
 Scrapps data from the profiles. This data can be searched with filter man/woman and in order to perform a smaller search, 

@@ -1,26 +1,12 @@
 #!/usr/bin/env python
-
-"""scrap_text.py: This script takes de web criminalia and scrapps data from all the listed profiles. 
-This data is returned as a .csv file with the following variables:
-
-Class: Murder, Serial Killer, Homicide, etc.
-Subclass: Parricide, etc.
-Sentence: Death penalty, years of prison, etc. To be processed.
-Location: State/Country
-Victims: Number of victims
-Date: Date of the crime
-Detention: Date of the detention
-Victim Profile: Male/Female, age and other details to be processed
-"""
-
-__author__ = "Alicia Sánchez R."
+__author__ = "Alicia SR."
 
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
 import string
 import itertools
-
+import random
 
 def read_sub_page(url_m,classif,condena,loc,subclass,victims,date,deten,victimprof):
 
@@ -46,6 +32,7 @@ def read_sub_page(url_m,classif,condena,loc,subclass,victims,date,deten,victimpr
     for t in range(-2,6):
         if l[t]=='':
             l[t]=='NA'
+
     classif.append(l[0])
     subclass.append(l[1])
     condena.append(l[-1])
@@ -57,7 +44,7 @@ def read_sub_page(url_m,classif,condena,loc,subclass,victims,date,deten,victimpr
 
     return(classif,condena,loc,subclass,victims,date,deten,victimprof)
  
-def read_details(job_el, df):
+def read_details(job_el):
     '''
     Read variables from each profile in the gender-letter list of profiles that corresponds to the built url
     '''
@@ -91,10 +78,8 @@ def read_murder_browser(gender_selected,letter,country):
     url = url_root + query
     return(url)
 
-def main():
-
+def give_me_data(gender_selected, letters_list,name_file):
     '''
-    - Select Gender to scrapp profile data.
     - Store each scrapped variable in a list that will serve later as a dataframe column
     - For each letter the scrapping process goes:
         - read_murder_browser in order to get group of profiles (gender and letter) url
@@ -102,31 +87,21 @@ def main():
         - Read content id and block class
         - Read each single variable with read_details and store them in their list
     - Build dataframe and store it as .csv file
-
     '''
-    
-    gender_selected = input('Gender (hombre o mujer): ')
-    while gender_selected not in ['hombre','mujer']:
-        print('Please select valid gender')
-        gender_selected = input('Gender (hombre o mujer): ')
-    classif_l = []
-    condena_l = []
-    loc_l = []
-    subclass_l = []
-    victims_l = []
-    date_l = []
-    deten_l = []
-    victimprof_l = []
-    df = pd.DataFrame(columns=['Class','Subclass','Condena','Location','Victims','Date murder','Date Detention','Victim Profile'])
-    letters_list = list(string.ascii_lowercase)
+
+    df = pd.DataFrame()
+    print('Searching for results considering letters', letters_list)
+    classif_l,condena_l,loc_l,subclass_l,victims_l,date_l,deten_l,victimprof_l = [],[],[],[],[],[],[],[]
+
     for t in range(0, len(letters_list)):
         url = read_murder_browser(gender_selected,letters_list[t],None)
-        print('URL ',url)
+        print('🌐 URL: ',url)
         page = requests.get(url)
         soup = BeautifulSoup(page.content, 'html.parser')
         results = soup.find_all(id="content")
         job_elems = results[0].find_all('li', class_='block')
-        classif,condena,loc,subclass,victims,date,deten,victimprof=read_details(job_elems, df)
+
+        classif,condena,loc,subclass,victims,date,deten,victimprof=read_details(job_elems)
         classif_l.append(classif)
         condena_l.append(condena)
         loc_l.append(loc)
@@ -147,7 +122,52 @@ def main():
 
     #print(df)
 
-    df.to_csv('man.csv', index=False)
+    df.to_csv('./Data/'+ name_file + '.csv', index=False, encoding='utf-8')
+
+    print('-------------------------')
+    print('🙃 Data have been stored in {}'.format(name_file + '.csv'))
+    print('-------------------------')
+
+
+def take_args():
+    '''
+    Preparing process taking arguments and selecting letter list for searching
+    '''
+    gender = input('Gender (M/W): ')
+    while gender not in ['W','M']:
+        print('🤔 Please select valid gender')
+        gender = input('Gender (M/W): ')
+    if gender == 'M':
+        gender_selected = 'hombre'
+    else:
+        gender_selected = 'mujer'
+
+    n = int(input('Number of letters for searching: '))
+    while n not in range(0,27):
+        print('Enter a number between  1 and 26  or set to 0 to get all')
+        n = int(input('Number of letters for searching: '))
+
+    letters_list = list(string.ascii_lowercase)
+    if n != 0:
+        letters_list = random.sample(letters_list, n)
+
+    if gender_selected == 'mujer':
+        name_file = 'Data_Woman'
+    else:
+        name_file = 'Data_Man'
+
+    return(gender_selected, letters_list ,name_file)
+
+
+def main():
+
+    '''
+    Select Gender to scrapp profile data.
+    '''
+
+    gender_selected, letters_list, name_file = take_args()
+
+    give_me_data(gender_selected, letters_list,name_file)
 
 
 if __name__ == "__main__":

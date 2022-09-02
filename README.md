@@ -7,8 +7,7 @@ This tool scraps data from web https://criminalia.es/ in order to obtain:
 - Image data of the scrapped profiles
 - Text data of the scrapped profiles
 
-![Flow]('https://github.com/Razwand/scrapping_data_criminalia/blob/main/images/flow_search.PNG')
-
+![Flow](https://github.com/Razwand/scrapping_data_criminalia/blob/main/images/flow_search.PNG)
 
 ## 👤 Scrapping Images
 
@@ -25,7 +24,7 @@ scrapping_criminalia>python scrap_img.py
 ```
 
 
-![Result]('https://github.com/Razwand/scrapping_data_criminalia/blob/main/images/result_1.PNG')
+![Result](https://github.com/Razwand/scrapping_data_criminalia/blob/main/images/result_1.PNG)
 
 
 ## 🖋 Scrapping Text

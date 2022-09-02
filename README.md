@@ -7,8 +7,7 @@ This tool scraps data from web https://criminalia.es/ in order to obtain:
 - Image data of the scrapped profiles
 - Text data of the scrapped profiles
 
-![]('https://github.com/Razwand/scrapping_data_criminalia/blob/main/images/flow_search.PNG')
-
+![Flow](https://github.com/Razwand/scrapping_data_criminalia/blob/main/images/flow_search.PNG)
 
 ## 👤 Scrapping Images
 
@@ -17,8 +16,15 @@ Profile Images and Data can be downloaded choosing between man/woman profiles an
 Also, in order to perform a smaller search, there's an option to perform a search considering just a few random letters (corresponding to surname search).
 ### How to
 
+```console
+scrapping_criminalia>python scrap_img.py
+>>Gender (M/W): M
+>>Folder to store images: ./Data/
+>>Number of letters for searching: 1
+```
 
-![]('https://github.com/Razwand/scrapping_data_criminalia/blob/main/images/result_1.PNG')
+
+![Result](https://github.com/Razwand/scrapping_data_criminalia/blob/main/images/result_1.PNG)
 
 
 ## 🖋 Scrapping Text
@@ -39,3 +45,9 @@ This data is returned as a .csv file with the following variables:
 |Victim Profile| Male/Female, age and other details to be processed|
 
 ### How to
+
+```console
+scrapping_criminalia>python scrap_text.py
+>>Gender (M/W): M
+>>Number of letters for searching: 1
+```

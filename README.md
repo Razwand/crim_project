@@ -24,7 +24,7 @@ scrapping_criminalia>python scrap_img.py
 ```
 
 
-![Result](https://github.com/Razwand/scrapping_data_criminalia/blob/main/images/result_1.PNG)
+![Result](https://github.com/Razwand/scrapping_data_criminalia/blob/main/images/result_scrap_img.PNG)
 
 
 ## 🖋 Scrapping Text

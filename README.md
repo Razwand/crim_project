@@ -38,7 +38,7 @@ This data is returned as a .csv file with the following variables:
 |Victim Profile| Male/Female, age and other details to be processed|
 
 ### Sample
-![ss](./imgs/name_search.PNG,"")
+![ss](./profile.PNG,"")
 
 
 

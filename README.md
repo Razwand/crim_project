@@ -9,6 +9,7 @@ This tool scraps data from web https://criminalia.es/ in order to obtain:
 
 ![]('https://github.com/Razwand/scrapping_data_criminalia/blob/main/images/flow_search.PNG')
 
+
 ## 👤 Scrapping Images
 
 This module scrapps images from all the listed profiles. 

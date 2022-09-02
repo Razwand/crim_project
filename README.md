@@ -7,7 +7,7 @@ This tool scraps data from web https://criminalia.es/ in order to obtain:
 - Image data of the scrapped profiles
 - Text data of the scrapped profiles
 
-![](https://github.com/Razwand/scrapping_data_criminalia/blob/main/flow.PNG)
+![](https://github.com/Razwand/scrapping_data_criminalia/blob/main/images/flow.PNG)
 
 ## 👤 Scrapping Images
 

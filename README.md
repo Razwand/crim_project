@@ -7,18 +7,14 @@ This tool scraps data from web https://criminalia.es/ in order to obtain:
 - Image data of the scrapped profiles
 - Text data of the scrapped profiles
 
+![](https://github.com/Razwand/scrapping_data_criminalia/blob/main/flow.PNG)
+
 ## 👤 Scrapping Images
 
 This module scrapps images from all the listed profiles. 
 Profile Images and Data can be downloaded choosing between man/woman profiles and the folder where they will be stored.
 Also, in order to perform a smaller search, there's an option to perform a search considering just a few random letters (corresponding to surname search).
-
-### Sample
-
-
-
-
-### Usage
+### How to
 
 ## 🖋 Scrapping Text
 
@@ -37,10 +33,4 @@ This data is returned as a .csv file with the following variables:
 |Detention|Date of the detention|
 |Victim Profile| Male/Female, age and other details to be processed|
 
-### Sample
-![ScreenShot](https://github.com/Razwand/scrapping_data_criminalia/blob/main/images/name_search.PNG)
-
-
-
-
-### Usage
+### How to

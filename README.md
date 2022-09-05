@@ -40,12 +40,16 @@ This data is returned as a .csv file with the following variables:
 | ----------------- | ------------------------------------------------------------------ |
 | Class | Murder, Serial Killer, Homicide, etc.|
 | Subclass | Parricide, etc. |
-| Sentence | Death penalty, years of prison, etc. |
+| Sentence | Death penalty, years of prison, etc. * |
 | Location| State/Country |
 | Victims| Number of victims |
 |Date|Date of the crime|
 |Detention|Date of the detention|
-|Victim Profile| Male/Female, age and other details to be processed|
+|Victim Profile| Male/Female, age and other details *|
+
+```diff
+- To be processed (More fields could be obtained)
+```
 
 ### How to
 

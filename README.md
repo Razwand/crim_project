@@ -27,7 +27,7 @@ scrapping_criminalia>python scrap_img.py
 ```
 
 
-![Result](https://github.com/Razwand/scrapping_data_criminalia/blob/main/images/result_scrap_img.PNG)
+![Result_1](https://github.com/Razwand/scrapping_data_criminalia/blob/main/images/result_scrap_img.PNG)
 
 
 ## 🖋 Scrapping Text
@@ -57,6 +57,7 @@ scrapping_criminalia>python scrap_text.py
 >>Gender (M/W): M
 >>Number of letters for searching: 1
 ```
+![Result_2](https://github.com/Razwand/scraping_data_criminalia/blob/main/images/table.PNG)
 ## Dependencies
 
 - All libraries used are stored in requirements.txt

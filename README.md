@@ -9,6 +9,14 @@ This tool scraps data from web https://criminalia.es/ in order to obtain:
 
 ![Flow](https://github.com/Razwand/scrapping_data_criminalia/blob/main/images/flow_search.PNG)
 
+## Requirements
+- A suitable conda environment named scrap can be created and activated with:
+
+```console
+conda env create -f environment.yml
+conda activate scrap
+```
+
 ## 👤 Scrapping Images
 
 This module scrapps images from all the listed profiles. 
@@ -58,10 +66,3 @@ scrapping_criminalia>python scrap_text.py
 >>Number of letters for searching: 1
 ```
 ![Result_2](https://github.com/Razwand/scraping_data_criminalia/blob/main/images/table.PNG)
-## Dependencies
-
-- All libraries used are stored in requirements.txt
-
-```console
-pip install -r requirements.txt
-```

@@ -13,7 +13,7 @@ This tool scraps data from web https://criminalia.es/ in order to obtain:
 - A suitable conda environment named scrap can be created and activated with:
 
 ```console
-conda env create -f environment.yml
+conda env create -f environment_scrap.yml
 conda activate scrap
 ```
 

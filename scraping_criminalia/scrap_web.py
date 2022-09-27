@@ -10,7 +10,7 @@ import os
 import pandas as pd
 import itertools
 
-# TEXT SCRAPING
+# TEXT SCRAPPING
 
 def read_sub_page_text(url_m,classif,condena,loc,subclass,victims,date,deten,victimprof):
 
@@ -135,7 +135,7 @@ def give_me_text(gender_selected, n):
 
     return(return_warning)
 
-# IMAGE SCRAPING
+# IMAGE SCRAPPING
 def read_sub_page_img(url_m, path_folder_img):
 
     '''

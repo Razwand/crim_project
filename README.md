@@ -67,5 +67,5 @@ scrapping_criminalia>python scrap_web.py
 >>Number of profiles to scrap: 5
 >>MODE (IMG/TEXT): TEXT
 ```
-```
+
 ![Result_2](https://github.com/Razwand/scraping_data_criminalia/blob/main/images/table.PNG)

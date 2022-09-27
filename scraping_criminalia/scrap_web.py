@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import random
 import requests
 from bs4 import BeautifulSoup
 import urllib
@@ -7,6 +8,7 @@ import string
 import os
 import pandas as pd
 import itertools
+import shutil
 
 # TEXT SCRAPPING
 
@@ -91,13 +93,13 @@ def give_me_text(gender_selected, n):
 
     return_warning = 0
     abc = list(string.ascii_lowercase)
-
+    letter = random.choice(abc)
+    abc.remove(letter)
     count_profiles = 0
-    letter = 0
     while count_profiles <n:
-        if letter < len(abc):
+        if len(abc) >=1:
 
-            url = read_murder_browser(gender_selected,abc[letter],None)
+            url = read_murder_browser(gender_selected,letter,None)
 
             page = requests.get(url)
             soup = BeautifulSoup(page.content, 'html.parser')
@@ -106,7 +108,8 @@ def give_me_text(gender_selected, n):
 
             classif,condena,loc,subclass,victims,date,deten,victimprof,number_processed =read_details_text(job_elems,count_profiles, n)
 
-            letter +=1
+            letter = random.choice(abc)
+            abc.remove(letter)
             count_profiles += number_processed
 
             classif_l.append(classif)
@@ -191,20 +194,23 @@ def give_me_imgs(gender_selected, path_folder_img, n):
     - Reads details from the table of all elements of the page search.
     '''
     return_warning = 0
-    abc = list(string.ascii_lowercase)[:1]
+    abc = list(string.ascii_lowercase)
 
     count_profiles = 0
-    letter = 0
+    letter = random.choice(abc)
+    abc.remove(letter)
     while count_profiles <n:
-        if letter < len(abc):
+        if len(abc) >= 1:
 
-                url = read_murder_browser(gender_selected,abc[letter], None)
+                url = read_murder_browser(gender_selected,letter, None)
                 page = requests.get(url)
                 soup = BeautifulSoup(page.content, 'html.parser')
                 results = soup.find_all(id="content")
                 job_elems = results[0].find_all('li', class_='block')
                 number_processed = read_details_img(job_elems,path_folder_img,n, count_profiles)
-                letter +=1
+                letter = random.choice(abc)
+                abc.remove(letter)
+
                 count_profiles += number_processed
         else:
             return_warning = 1
@@ -257,9 +263,15 @@ def prepare_folders(mode):
         path_folder = './output_img/'
         if  os.path.exists(path_folder)==False:
             os.mkdir(path_folder)
+        else:
+            shutil.rmtree(path_folder)
+            os.mkdir(path_folder)
     elif mode == 'TEXT':
         path_folder = './output_text/'
         if  os.path.exists(path_folder)==False:
+            os.mkdir(path_folder)
+        else:
+            shutil.rmtree(path_folder)
             os.mkdir(path_folder)
 
     return(path_folder)

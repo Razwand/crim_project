@@ -1,7 +1,5 @@
 #!/usr/bin/env python
 
-__author__ = "Alicia Sánchez R."
-
 import requests
 from bs4 import BeautifulSoup
 import urllib
@@ -32,7 +30,6 @@ def read_sub_page_text(url_m,classif,condena,loc,subclass,victims,date,deten,vic
         ele = ele.replace('class="dd">','')
         l.append(ele)
 
-
     for t in range(-2,6):
         if l[t]=='':
             l[t]='NA'
@@ -49,9 +46,11 @@ def read_sub_page_text(url_m,classif,condena,loc,subclass,victims,date,deten,vic
     return(classif,condena,loc,subclass,victims,date,deten,victimprof)
  
 def read_details_text(job_el, actual_profile_processed, n):
+
     '''
     Read variables from each profile in the gender-letter list of profiles that corresponds to the built url
     '''
+
     classif = []
     condena = []
     loc = []
@@ -76,14 +75,15 @@ def read_details_text(job_el, actual_profile_processed, n):
 
 
 def give_me_text(gender_selected, n):
+
     '''
-    - Store each scrapped variable in a list that will serve later as a dataframe column
+    - Stores each scrapped variable in a list that will serve later as a dataframe column
     - For each letter the scrapping process goes:
         - read_murder_browser in order to get a group of profiles (gender and letter) url
-        - Read html
-        - Read content id and block class
-        - Read each single variable with read_details and store them in their list
-    - Build a dataframe and store it as .csv file
+        - Reads html
+        - Reads content id and block class
+        - Reads each single variable with read_details and store them in their list
+    - Builds a dataframe and store it as .csv file
     '''
 
     df = pd.DataFrame()
@@ -97,6 +97,7 @@ def give_me_text(gender_selected, n):
     letter = 0
     while count_profiles <n:
         if letter < len(abc):
+
             url = read_murder_browser(gender_selected,abc[letter],None)
 
             page = requests.get(url)
@@ -130,7 +131,6 @@ def give_me_text(gender_selected, n):
     df['Date Detention'] = list(itertools.chain.from_iterable(deten_l))
     df['Victim Profile'] = list(itertools.chain.from_iterable(victimprof_l))
 
-
     df.to_csv('./output_text/result_table.csv', index=False, encoding='utf-8')
 
     return(return_warning)
@@ -141,15 +141,14 @@ def read_sub_page_img(url_m, path_folder_img):
     '''
     From the single profile url:
     TRY:
-    - Read html looking for container id
-    - Filter by 'image' class
-    - find 'img'
-    - Save image in selected path with name referring to the profile name
+    - Reads html looking for container id
+    - Filters by 'image' class
+    - finds 'img'
+    - Saves image in selected path with name referring to the profile name
     IF NOT:
     - Img saving has not been possible and printing out the name of the profile that hasn't been scrapped
 
     '''
-
     try:
         subpage = requests.get(url_m)
         subsoup = BeautifulSoup(subpage.content, 'html.parser')
@@ -166,12 +165,10 @@ def read_details_img(job_el,path_folder_img, n,actual_number_scrapped):
     '''
     For each element (from index 1 as first position stores the table tittle):
     - Name extraction
-    - Look for 'more' class
+    - Looks for 'more' class
     - href filter to take a url from a single profile
-    - read page extracted in the previous step
-
+    - Reads page extracted in the previous step
     '''
-
     number_to_process = len(job_el) -1
 
     if number_to_process+ actual_number_scrapped > n:
@@ -183,16 +180,16 @@ def read_details_img(job_el,path_folder_img, n,actual_number_scrapped):
         url_murder = more[0].get('href')
         read_sub_page_img(url_murder, path_folder_img)
 
-
     return(number_to_process)
 
 def give_me_imgs(gender_selected, path_folder_img, n):
+
     '''
     Letter by letter, the following steps will be taken:
-    - Build url searching by gender & letter
-    - Parse html filtering by id=content
-    - Extract all block elements from a list job_elems
-    - read details from the table of all elements of the page search.
+    - Builds url searching by gender & letter
+    - Parses html filtering by id=content
+    - Extracts all block elements from a list job_elems
+    - Reads details from the table of all elements of the page search.
     '''
     return_warning = 0
     abc = list(string.ascii_lowercase)[:1]
@@ -201,6 +198,7 @@ def give_me_imgs(gender_selected, path_folder_img, n):
     letter = 0
     while count_profiles <n:
         if letter < len(abc):
+
                 url = read_murder_browser(gender_selected,abc[letter], None)
                 page = requests.get(url)
                 soup = BeautifulSoup(page.content, 'html.parser')
@@ -221,16 +219,17 @@ def read_murder_browser(gender_selected,letter,country):
     '''
     Builds the url from parameters letter and gender
     '''
-
     url_root = 'https://criminalia.es/resultados-de-la-busqueda/'
     if letter is None:
          query = '?g=' + gender_selected + '&c='+ country
     else:
          query = '?l='+letter+'&g=' + gender_selected
     url = url_root + query
+
     return(url)
 
 def take_args():
+
     '''
     Preparing process by checking arguments 
     '''
@@ -253,6 +252,8 @@ def take_args():
     return(gender_selected, n , mode)
 
 def prepare_folders(mode):
+
+    ''' Creates output folders'''
     if mode == 'IMG':
         path_folder = './output_img/'
         if  os.path.exists(path_folder)==False:

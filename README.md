@@ -20,18 +20,17 @@ conda activate scrap
 ## 👤 Scrapping Images
 
 This module scrapps images from all the listed profiles. 
-Profile Images and Data can be downloaded choosing between man/woman profiles and the folder where they will be stored.
-Also, in order to perform a smaller search, there's an option to perform a search considering just a few random letters (corresponding to surname search).
+Profile Images and Data can be downloaded choosing between man/woman profiles and the number of profiles to be processed.
+
 ### How to
 
-In the following scenario user is searching for men, storing results in folder ./Data/ and the searching procedure will consider one random
-letter from the search page (corresponding to all profiles with surname begining with that letter).
+In the following scenario user is searching for 37 men, storing results in a folder named ./output_image/.If number of profiles to be processed exceed the total number of profiles, a message will notice. Maximum number of availeable profiles will be returned in this case.
 
 ```console
-scrapping_criminalia>python scrap_img.py
+scrapping_criminalia>python scrap_web.py
 >>Gender (M/W): M
->>Folder to store images: ./Data/
->>Number of letters for searching: 1
+>>Number of profiles to scrap: 37
+>>MODE (IMG/TEXT): IMG
 ```
 
 
@@ -40,9 +39,8 @@ scrapping_criminalia>python scrap_img.py
 
 ## 🖋 Scrapping Text
 
-Scrapps data from the profiles. This data can be searched with filter man/woman and in order to perform a smaller search, 
-there's an option to perform a search considering just a few random letters (corresponding to surname search).
-This data is returned as a .csv file with the following variables:
+Scrapps data from the profiles. This data can be searched with filter man/woman and the number of profiles to be processed.
+This data is returned as a .csv in ./output_text/ folder with the following variables:
 
 | Feature             | Values                                                                |
 | ----------------- | ------------------------------------------------------------------ |
@@ -61,12 +59,13 @@ This data is returned as a .csv file with the following variables:
 
 ### How to
 
-In the following scenario user is searching for men and the searching procedure will consider one random
-letter from the search page (corresponding to all profiles with surname begining with that letter).
+In the following scenario user is searching for 5 men. If number of profiles to be processed exceed the total number of profiles, a message will notice. Maximum number of availeable profiles will be returned in this case.
 
 ```console
-scrapping_criminalia>python scrap_text.py
+scrapping_criminalia>python scrap_web.py
 >>Gender (M/W): M
->>Number of letters for searching: 1
+>>Number of profiles to scrap: 5
+>>MODE (IMG/TEXT): TEXT
+```
 ```
 ![Result_2](https://github.com/Razwand/scraping_data_criminalia/blob/main/images/table.PNG)

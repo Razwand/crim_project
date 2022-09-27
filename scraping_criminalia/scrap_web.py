@@ -19,7 +19,7 @@ def read_sub_page_text(url_m,classif,condena,loc,subclass,victims,date,deten,vic
     '''
 
     subpage = requests.get(url_m)
-    subsoup = BeautifulSoup(subpage.content, 'html.parser')
+    subsoup = BeautifulSoup(subpage.content, "html.parser")
     results_subpage = subsoup.find_all(id="container")
     job_elems = results_subpage[0].find('div', class_='text')
     job_elems_ = job_elems.findAll('span', class_='dd')
@@ -31,8 +31,7 @@ def read_sub_page_text(url_m,classif,condena,loc,subclass,victims,date,deten,vic
         l.append(ele)
 
     for t in range(-2,6):
-        if l[t]=='':
-            l[t]='NA'
+        l[t].replace('','NA')
 
     classif.append(l[0])
     subclass.append(l[1])

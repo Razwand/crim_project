@@ -2,7 +2,7 @@
 
 # About
 
-This tool scraps data from web https://criminalia.es/ in order to obtain:
+This tool scraps data from the website https://criminalia.es/ in order to obtain:
 
 - Image data of the scrapped profiles
 - Text data of the scrapped profiles
@@ -19,12 +19,12 @@ conda activate scrap
 
 ## 👤 Scrapping Images
 
-This module scrapps images from all the listed profiles. 
+This module scraps images from all the listed profiles. 
 Profile Images and Data can be downloaded choosing between man/woman profiles and the number of profiles to be processed.
 
 ### How to
 
-In the following scenario user is searching for 37 men, storing results in a folder named ./output_image/.If number of profiles to be processed exceed the total number of profiles, a message will notice. Maximum number of availeable profiles will be returned in this case.
+In the following scenario, the user is searching for 37 men, storing results in a folder named ./output_image/. If the number of profiles to be processed exceeds the total number of profiles, a message will show a message. The maximum number of available profiles will be returned in this case.
 
 ```console
 scrapping_criminalia>python scrap_web.py
@@ -39,7 +39,7 @@ scrapping_criminalia>python scrap_web.py
 
 ## 🖋 Scrapping Text
 
-Scrapps data from the profiles. This data can be searched with filter man/woman and the number of profiles to be processed.
+Scraps data from the profiles. This data can be searched with filter man/woman and the number of profiles to be processed.
 This data is returned as a .csv in ./output_text/ folder with the following variables:
 
 | Feature             | Values                                                                |
@@ -59,7 +59,7 @@ This data is returned as a .csv in ./output_text/ folder with the following vari
 
 ### How to
 
-In the following scenario user is searching for 5 men. If number of profiles to be processed exceed the total number of profiles, a message will notice. Maximum number of availeable profiles will be returned in this case.
+In the following scenario, the user is searching for 5 men. If the number of profiles to be processed exceeds the total number of profiles, a message will show a message. The maximum number of available profiles will be returned in this case.
 
 ```console
 scrapping_criminalia>python scrap_web.py

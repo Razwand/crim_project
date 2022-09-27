@@ -16,7 +16,7 @@ def read_sub_page_text(url_m,classif,condena,loc,subclass,victims,date,deten,vic
 
     '''
     Extract from each profile the required data filtering by id container, class text and later class dd
-    Note: class dd is the same for all the string data. Knowing the structure and the data that is always inside this string (not all the data is allways shown)
+    Note: class dd is the same for all the string data. Knowing the structure and the data that is always inside this string (not all the data is always shown)
     some characters are deleted and the string becomes a list of variable values that will be stored in variables classif,condena,loc,subclass,victims,date,deten and victimprof
     '''
 
@@ -79,11 +79,11 @@ def give_me_text(gender_selected, n):
     '''
     - Store each scrapped variable in a list that will serve later as a dataframe column
     - For each letter the scrapping process goes:
-        - read_murder_browser in order to get group of profiles (gender and letter) url
+        - read_murder_browser in order to get a group of profiles (gender and letter) url
         - Read html
         - Read content id and block class
         - Read each single variable with read_details and store them in their list
-    - Build dataframe and store it as .csv file
+    - Build a dataframe and store it as .csv file
     '''
 
     df = pd.DataFrame()
@@ -144,9 +144,9 @@ def read_sub_page_img(url_m, path_folder_img):
     - Read html looking for container id
     - Filter by 'image' class
     - find 'img'
-    - Save image in selected path with name refering to the profile name
+    - Save image in selected path with name referring to the profile name
     IF NOT:
-    - Img saving has not been possible and print out the name of the profile that hasn't been scrapped
+    - Img saving has not been possible and printing out the name of the profile that hasn't been scrapped
 
     '''
 
@@ -167,7 +167,7 @@ def read_details_img(job_el,path_folder_img, n,actual_number_scrapped):
     For each element (from index 1 as first position stores the table tittle):
     - Name extraction
     - Look for 'more' class
-    - href filter to take url from single profile
+    - href filter to take a url from a single profile
     - read page extracted in the previous step
 
     '''
@@ -188,10 +188,10 @@ def read_details_img(job_el,path_folder_img, n,actual_number_scrapped):
 
 def give_me_imgs(gender_selected, path_folder_img, n):
     '''
-    Letter by letter the following steps will be taken:
+    Letter by letter, the following steps will be taken:
     - Build url searching by gender & letter
     - Parse html filtering by id=content
-    - Extract all block elements in a list job_elems
+    - Extract all block elements from a list job_elems
     - read details from the table of all elements of the page search.
     '''
     return_warning = 0
@@ -219,7 +219,7 @@ def give_me_imgs(gender_selected, path_folder_img, n):
 def read_murder_browser(gender_selected,letter,country):
 
     '''
-    Build url from parameters letter and gender
+    Builds the url from parameters letter and gender
     '''
 
     url_root = 'https://criminalia.es/resultados-de-la-busqueda/'
@@ -232,11 +232,11 @@ def read_murder_browser(gender_selected,letter,country):
 
 def take_args():
     '''
-    Preparing process taking arguments and selecting letter list for searching
+    Preparing process by checking arguments 
     '''
     gender = input('Gender (M/W): ')
     while gender not in ['W','M']:
-        print('\U0001F914 Please select valid gender')
+        print('\U0001F914 Please select a valid gender')
         gender = input('Gender (M/W): ')
     if gender == 'M':
         gender_selected = 'hombre'
@@ -247,7 +247,7 @@ def take_args():
 
     mode = input('MODE (IMG/TEXT): ')
     while mode not in ['IMG','TEXT']:
-        print('\U0001F914 Please select valid mode (IMG/TEXT)')
+        print('\U0001F914 Please select a valid mode (IMG/TEXT)')
         mode = input('MODE (IMG/TEXT): ')
     
     return(gender_selected, n , mode)
@@ -267,8 +267,8 @@ def prepare_folders(mode):
 def main():
 
     '''
-    Main flow starting with parameter 'Gender'.
-    Also, user must specify how many profiles to scrap with parameter 'n'.
+    Main flow starts with the parameter 'Gender'.
+    Also, users must specify how many profiles to scrap with the parameter 'n'.
     '''
     gender_selected,n,mode = take_args()
     
@@ -279,7 +279,7 @@ def main():
         warning = give_me_imgs(gender_selected, path_folder, n)
 
         if warning == 1:
-            print('You asked for more images than availeable! Check all the availeable results in {}'.format(path_folder))
+            print('You asked for more profiles than the ones  available! Check all the available results in  {}'.format(path_folder))
 
         print('-------------------------')
         print('\U0001F643 Images have been stored in {}'.format(path_folder))
@@ -290,7 +290,7 @@ def main():
         warning = give_me_text(gender_selected, n)
 
         if warning == 1:
-            print('You asked for more profiles than availeable! Check all the availeable results in {}'.format(path_folder))
+            print('You asked for more profiles than the ones  available! Check all the available results in {}'.format(path_folder))
         
         print('-------------------------')
         print('\U0001F643 Table has been stored in {}'.format(path_folder))

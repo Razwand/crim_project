@@ -10,7 +10,7 @@ import pandas as pd
 import itertools
 import shutil
 
-# TEXT SCRAPPING
+# TEXT scraping
 
 def read_sub_page_text(url_m,classif,condena,loc,subclass,victims,date,deten,victimprof):
 
@@ -79,7 +79,7 @@ def give_me_text(gender_selected, n):
 
     '''
     - Stores each scrapped variable in a list that will serve later as a dataframe column
-    - For each letter the scrapping process goes:
+    - For each letter the scraping process goes:
         - read_murder_browser in order to get a group of profiles (gender and letter) url
         - Reads html
         - Reads content id and block class
@@ -137,7 +137,7 @@ def give_me_text(gender_selected, n):
 
     return(return_warning)
 
-# IMAGE SCRAPPING
+# IMAGE scraping
 def read_sub_page_img(url_m, path_folder_img):
 
     '''
